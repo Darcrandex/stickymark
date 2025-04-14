@@ -1,69 +1,57 @@
-import { db } from "@/db";
-import { NextResponse, type NextRequest } from "next/server";
+import { db } from '@/db'
+import { NextResponse, type NextRequest } from 'next/server'
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
-  const { title, url } = await request.json();
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params
+  const { title, url } = await request.json()
 
-  const { data, error } = await db
-    .from("mark")
-    .update({ title, url })
-    .eq("id", id);
+  const { data, error } = await db.from('mark').update({ title, url }).eq('id', id)
 
   if (error) {
     return NextResponse.json({
-      message: "Error updating data",
+      message: 'Error updating data',
       error,
-    });
+    })
   }
 
   return NextResponse.json({
-    message: "Data updated successfully",
+    message: 'Data updated successfully',
     data,
-  });
+  })
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params
 
-  const { data, error } = await db.from("mark").delete().eq("id", id);
+  const { data, error } = await db.from('mark').delete().eq('id', id)
 
   if (error) {
     return NextResponse.json({
-      message: "Error deleting data",
+      message: 'Error deleting data',
       error,
-    });
+    })
   }
 
   return NextResponse.json({
-    message: "Data deleted successfully",
+    message: 'Data deleted successfully',
     data,
-  });
+  })
 }
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params
 
-  const { data, error } = await db.from("mark").select().eq("id", id);
+  const { data, error } = await db.from('mark').select().eq('id', id)
 
   if (error) {
     return NextResponse.json({
-      message: "Error fetching data",
+      message: 'Error fetching data',
       error,
-    });
+    })
   }
 
   return NextResponse.json({
-    message: "success",
+    message: 'success',
     data,
-  });
+  })
 }
