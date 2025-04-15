@@ -6,14 +6,19 @@
 
 'use client'
 
-import { useEffect } from 'react'
+import { http } from '@/utils/http.client'
+import { useQuery } from '@tanstack/react-query'
 
 export default function UserProfile() {
-  useEffect(() => {
-    fetch('/api/auth/user/info', {
-      headers: { authorization: localStorage.getItem('token') || '' },
-    })
-  }, [])
+  const { data } = useQuery({
+    queryKey: ['user-info'],
+    queryFn: async () => {
+      const res = await http.get('/api/auth/user/info')
+      return res.data
+    },
+  })
+
+  console.log('data', data)
 
   return (
     <>

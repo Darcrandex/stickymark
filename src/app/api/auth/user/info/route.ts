@@ -16,5 +16,5 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: 'Error fetching data', error })
   }
 
-  return NextResponse.json({ message: 'Data fetched successfully', data })
+  return NextResponse.json({ message: 'Data fetched successfully', data: data[0] })
 }
