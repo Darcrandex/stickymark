@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer'
 const adminEmail = process.env.NEXT_APP_ADMIN_EMAIL
 const adminEmailPassword = process.env.NEXT_APP_ADMIN_EMAIL_KEY
 
-// 重置登录密码
+// 忘记密码
 export async function POST(request: NextRequest) {
   const userId = '123123123'
   const { email } = await request.json()
@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// 重置密码
 export async function PUT(request: NextRequest) {
   const userIdFromToken = '123123123'
   const { newPassword, token: queryToken } = await request.json()
