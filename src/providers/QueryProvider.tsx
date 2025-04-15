@@ -10,6 +10,8 @@ import { isServer, QueryClient, QueryClientProvider } from '@tanstack/react-quer
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental'
 import { PropsWithChildren } from 'react'
 
+let browserQueryClient: QueryClient | undefined = undefined
+
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
@@ -19,8 +21,6 @@ function makeQueryClient() {
     },
   })
 }
-
-let browserQueryClient: QueryClient | undefined = undefined
 
 function getQueryClient() {
   if (isServer) {
