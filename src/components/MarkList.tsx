@@ -11,8 +11,8 @@ import { fetchAddMark, fetchDeleteMark, fetchMarkList } from '@/utils/serves/hom
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import SortableGrid from './dndkitSort/SortableGrid'
-import { CustomInput } from './selfInput/input'
-import { MarkPopupManager } from './selfModal/modal'
+// import { CustomInput } from './selfInput/input'
+// import { MarkPopupManager } from './selfModal/modal'
 
 export default function MarkList() {
   const { data, isLoading, isError, error, refetch } = useQuery({
@@ -62,7 +62,7 @@ export default function MarkList() {
   }
 
   const addMark = async () => {
-    const res = await MarkPopupManager.confirm({ Component: markItemContent })
+    // const res = await MarkPopupManager.confirm({ Component: markItemContent })
   }
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Error...</div>
